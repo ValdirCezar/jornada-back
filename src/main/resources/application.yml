@@ -6,12 +6,12 @@ spring:
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:root}
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:jornada-db}
-    jpa:
-      properties:
-        hibernate:
-          format_sql: 'true'
+  jpa:
+    properties:
       hibernate:
-        ddl-auto: ${DDL_AUTO:create}
-      show-sql: 'true'
+        format_sql: 'true'
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    show-sql: 'true'
 server:
   port: ${SERVER_PORT:8000}
