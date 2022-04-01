@@ -1,11 +1,9 @@
 package com.valdir.userservice.entities;
-import com.valdir.userservice.enumerations.ProfileEnum;
+import com.valdir.userservice.models.enumerations.ProfileEnum;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import java.util.Objects;
 
@@ -29,6 +27,8 @@ public class User {
     private String description;
     private Integer age;
     private Float score;
+
+    @Enumerated(EnumType.STRING)
     private ProfileEnum profile;
 
     @Override

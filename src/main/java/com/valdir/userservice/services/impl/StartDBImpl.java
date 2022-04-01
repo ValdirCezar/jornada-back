@@ -1,7 +1,6 @@
 package com.valdir.userservice.services.impl;
 
 import com.valdir.userservice.entities.User;
-import com.valdir.userservice.enumerations.ProfileEnum;
 import com.valdir.userservice.repositories.UserRepository;
 import com.valdir.userservice.services.StartDB;
 import lombok.RequiredArgsConstructor;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.valdir.userservice.enumerations.ProfileEnum.ADMIN;
+import static com.valdir.userservice.models.enumerations.ProfileEnum.ADMIN;
 
 @RequiredArgsConstructor
 @Service
