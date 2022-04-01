@@ -1,4 +1,5 @@
 package com.valdir.userservice.entities;
+import com.valdir.userservice.enumerations.ProfileEnum;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -28,6 +29,7 @@ public class User {
     private String description;
     private Integer age;
     private Float score;
+    private ProfileEnum profile;
 
     @Override
     public boolean equals(Object o) {
