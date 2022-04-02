@@ -26,4 +26,7 @@ public interface UserResource {
 
     @PostMapping
     ResponseEntity<Void> create(@Valid @RequestBody UserDTO dto);
+
+    @PutMapping(value = ID)
+    ResponseEntity<UserDTO> update(@Valid @RequestBody UserDTO dto, @PathVariable Long id);
 }
