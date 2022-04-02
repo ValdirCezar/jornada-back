@@ -1,12 +1,12 @@
 package com.valdir.userservice.resources.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
 @Getter
-@AllArgsConstructor
+@SuperBuilder
 public class StandardError {
 
     private LocalDateTime timestamp;

@@ -1,7 +1,10 @@
 package com.valdir.userservice.resources.exception;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -20,13 +23,33 @@ public class ResourceExceptionHandler {
             SQLIntegrityConstraintViolationException ex,
             HttpServletRequest request
     ) {
-        StandardError error = new StandardError(
-                now(),
-                BAD_REQUEST.value(),
-                BAD_REQUEST.getReasonPhrase(),
-                getFieldAlreadyRegistered(ex.getMessage()),
-                request.getRequestURI());
+        StandardError error = StandardError.builder()
+                .timestamp(now())
+                .code(BAD_REQUEST.value())
+                .error(BAD_REQUEST.getReasonPhrase())
+                .message(getFieldAlreadyRegistered(ex.getMessage()))
+                .path(request.getRequestURI())
+                .build();
         return ResponseEntity.status(BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<StandardError> objectNotFoundException(
+            MethodArgumentNotValidException ex,
+            HttpServletRequest request
+    ) {
+        ValidationError error = ValidationError.builder()
+                .timestamp(now())
+                .code(BAD_REQUEST.value())
+                .error(BAD_REQUEST.getReasonPhrase())
+                .message("Erro na validação dos campos!")
+                .path(request.getRequestURI())
+                .build();
+
+        for(FieldError x : ex.getBindingResult().getFieldErrors()) {
+            error.addError(x.getField(), x.getDefaultMessage());
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     private String getFieldAlreadyRegistered(String message) {
