@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import java.util.Objects;
 
@@ -20,10 +21,20 @@ public class User {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
+    @Size(max = 125)
     private String name;
+
+    @Column(unique = true)
     private String cpf;
+
+    @Column(unique = true)
     private String email;
+
+    @Size(max = 60)
     private String password;
+
+    @Size(max = 10000)
     private String description;
     private Integer age;
     private Float score;
