@@ -9,6 +9,7 @@ import com.valdir.userservice.services.exceptions.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository repository;
     private final UserMapper mapper;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public UserDTO findById(Long id) {
@@ -40,6 +42,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO create(UserDTO dto) {
         dto.setId(null);
+        dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         User user = repository.save(mapper.dtoToEntity(dto));
         return mapper.entityToDTO(user);
     }

@@ -16,5 +16,8 @@ spring:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+jwt:
+  expiration: 640000000
+  secret: WordToAddInTokenAccess
 server:
   port: ${SERVER_PORT:8000}
