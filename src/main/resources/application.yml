@@ -13,5 +13,8 @@ spring:
     hibernate:
       ddl-auto: ${DDL_AUTO:update}
     show-sql: 'true'
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 server:
   port: ${SERVER_PORT:8000}
