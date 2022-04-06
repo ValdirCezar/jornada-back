@@ -26,32 +26,31 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Override
-    public UserDTO findById(Long id) {
+    public User findById(Long id) {
         Optional<User> user = repository.findById(id);
-        return mapper.entityToDTO(user.orElseThrow(
-                () -> new ObjectNotFoundException(format("Object not found exception! Id: %d", id))
-        ));
+        return user.orElseThrow(
+                () -> new ObjectNotFoundException(format(
+                        "Object not found exception! Id: %d, Tipe: %s", id, User.class.getSimpleName()
+                ))
+        );
     }
 
     @Override
-    public Page<UserDTO> findPage(Integer page, Integer size, String direction, String orderBy) {
-        Page<User> list = repository.findAll(PageRequest.of(page, size, valueOf(direction), orderBy));
-        return list.map(mapper::entityToDTO);
+    public Page<User> findPage(Integer page, Integer size, String direction, String orderBy) {
+        return repository.findAll(PageRequest.of(page, size, valueOf(direction), orderBy));
     }
 
     @Override
-    public UserDTO create(UserDTO dto) {
+    public User create(UserDTO dto) {
         dto.setId(null);
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-        User user = repository.save(mapper.dtoToEntity(dto));
-        return mapper.entityToDTO(user);
+        return repository.save(mapper.dtoToEntity(dto));
     }
 
     @Override
-    public UserDTO update(UserDTO userDTO, Long id) {
+    public User update(UserDTO userDTO, Long id) {
         userDTO.setId(id);
-        User user = repository.save(mapper.dtoToEntity(userDTO));
-        return mapper.entityToDTO(user);
+        return repository.save(mapper.dtoToEntity(userDTO));
     }
 
 }
