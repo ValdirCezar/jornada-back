@@ -36,4 +36,7 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> users = new HashSet<>();
+
+    @OneToMany(mappedBy = "course")
+    private Set<Class> classes = new HashSet<>();
 }
