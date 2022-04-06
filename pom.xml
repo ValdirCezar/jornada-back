@@ -9,11 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.valdir</groupId>
-    <artifactId>user-service</artifactId>
+    <artifactId>jornada-back</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>user-service</name>
-    <description>user-service</description>
+    <name>jornada-back</name>
+    <description>Backend da jornada SENAI Londrina</description>
     <properties>
         <java.version>11</java.version>
     </properties>
