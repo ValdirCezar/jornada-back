@@ -9,11 +9,17 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serial;
+import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
-public class UserDTO {
+public class UserDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
     
     private Long id;
 
@@ -36,4 +42,5 @@ public class UserDTO {
     private Integer age;
     private Float score;
     private ProfileEnum profile;
+    private List<CourseDTO> courses;
 }

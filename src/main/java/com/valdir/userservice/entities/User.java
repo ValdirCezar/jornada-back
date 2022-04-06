@@ -1,18 +1,21 @@
 package com.valdir.userservice.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.valdir.userservice.models.enumerations.ProfileEnum;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
 @Setter
-@ToString
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "TB_USER")
@@ -41,6 +44,9 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private ProfileEnum profile;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Course> courses = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {

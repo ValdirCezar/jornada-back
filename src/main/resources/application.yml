@@ -11,7 +11,7 @@ spring:
       hibernate:
         format_sql: 'true'
     hibernate:
-      ddl-auto: ${DDL_AUTO:update}
+      ddl-auto: ${DDL_AUTO:create}
     show-sql: 'true'
 springdoc:
   swagger-ui:
