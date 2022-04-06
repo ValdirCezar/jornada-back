@@ -11,7 +11,7 @@
     <groupId>com.valdir</groupId>
     <artifactId>user-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>user-service</name>
     <description>user-service</description>
     <properties>
