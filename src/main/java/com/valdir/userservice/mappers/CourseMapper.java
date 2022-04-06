@@ -6,7 +6,7 @@ import com.valdir.userservice.models.dtos.CourseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.List;
+import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface CourseMapper {
@@ -16,5 +16,5 @@ public interface CourseMapper {
     Course toEntity(CourseDTO dto);
 
     @Mapping(source = "users", target = "users")
-    Course updateFromDTO(CourseDTO dto, List<User> users);
+    Course updateFromDTO(CourseDTO dto, Set<User> users);
 }

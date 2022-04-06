@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
@@ -30,5 +31,5 @@ public interface UserMapper {
     User dtoToEntity(UserDTO dto);
 
     @Mapping(source = "courses", target = "courses")
-    User updateFromDTO(UserDTO dto, List<Course> courses);
+    User updateFromDTO(UserDTO dto, Set<Course> courses);
 }

@@ -39,10 +39,10 @@ public class StartDBImpl implements StartDB {
                 .description("Aluno senai")
                 .profile(ProfileEnum.ADMIN)
                 .score(5.0f)
-                .courses(List.of(course))
+                .courses(Collections.singleton(course))
                 .build();
 
-        course.setUsers(Collections.singletonList(user));
+        course.setUsers(Collections.singleton(user));
 
         userRepository.saveAll(List.of(
             user

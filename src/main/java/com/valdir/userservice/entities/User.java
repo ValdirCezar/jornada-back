@@ -1,15 +1,14 @@
 package com.valdir.userservice.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.valdir.userservice.models.enumerations.ProfileEnum;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -46,7 +45,7 @@ public class User {
     private ProfileEnum profile;
 
     @ManyToMany(mappedBy = "users")
-    private List<Course> courses = new ArrayList<>();
+    private Set<Course> courses = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
