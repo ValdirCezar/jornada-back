@@ -6,8 +6,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
+
     UserDTO findById(Long id);
-    Page<UserDTO> findPage( Integer page, Integer size, String direction, String orderBy);
+
+    Page<UserDTO> findPage(Integer page, Integer size, String direction, String orderBy);
+
     UserDTO create(UserDTO dto);
+
     UserDTO update(UserDTO dto, Long id);
 }

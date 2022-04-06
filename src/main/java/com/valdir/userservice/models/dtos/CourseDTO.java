@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Getter
 @Builder
+@Setter
 @AllArgsConstructor
 public class CourseDTO implements Serializable {
 
