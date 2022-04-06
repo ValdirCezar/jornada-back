@@ -1,6 +1,5 @@
 package com.valdir.userservice.resources.impl;
 
-import com.valdir.userservice.mappers.UserMapper;
 import com.valdir.userservice.models.dtos.UserDTO;
 import com.valdir.userservice.resources.UserResource;
 import com.valdir.userservice.services.UserService;
@@ -18,7 +17,6 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 @RequiredArgsConstructor
 public class UserResourceImpl implements UserResource {
 
-    private final UserMapper mapper;
     private final UserService service;
 
     @Override
