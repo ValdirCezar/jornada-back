@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serial;
 import java.io.Serializable;
 
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
@@ -18,8 +17,6 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 @Setter
 @AllArgsConstructor
 public class CourseDTO implements Serializable {
-
-    @Serial
     private static final long serialVersionUID = 1L;
 
     @JsonProperty(access = READ_ONLY)

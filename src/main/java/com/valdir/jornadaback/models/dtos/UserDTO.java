@@ -10,7 +10,6 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,10 +17,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 public class UserDTO implements Serializable {
-
-    @Serial
     private static final long serialVersionUID = 1L;
-    
+
     private Long id;
 
     @NotNull(message = "Field NAME must be not null")
