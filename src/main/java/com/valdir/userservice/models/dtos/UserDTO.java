@@ -1,5 +1,6 @@
 package com.valdir.userservice.models.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.valdir.userservice.models.enumerations.ProfileEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,5 +43,7 @@ public class UserDTO implements Serializable {
     private Integer age;
     private Float score;
     private ProfileEnum profile;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private List<CourseDTO> courses;
 }

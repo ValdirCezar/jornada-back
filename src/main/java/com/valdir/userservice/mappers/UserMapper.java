@@ -1,5 +1,6 @@
 package com.valdir.userservice.mappers;
 
+import com.valdir.userservice.entities.Course;
 import com.valdir.userservice.entities.User;
 import com.valdir.userservice.models.dtos.CourseDTO;
 import com.valdir.userservice.models.dtos.UserDTO;
@@ -27,4 +28,7 @@ public interface UserMapper {
     }
 
     User dtoToEntity(UserDTO dto);
+
+    @Mapping(source = "courses", target = "courses")
+    User updateFromDTO(UserDTO dto, List<Course> courses);
 }
