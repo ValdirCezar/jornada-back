@@ -27,4 +27,6 @@ public class ClassDTO {
     @NotNull(message = "Field DESCRIPTION must be not null")
     @Size(min = 5, max = 5000, message = "Field NAME must be 5 and 5000 characters")
     private String description;
+
+    private Long courseId;
 }
