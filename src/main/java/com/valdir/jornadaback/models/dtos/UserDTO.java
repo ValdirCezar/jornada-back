@@ -25,7 +25,6 @@ public class UserDTO implements Serializable {
     @Size(min = 3, max = 125, message = "Field NAME must be 3 and 125 characters")
     private String name;
 
-    @NotNull(message = "Field CPF must be not null")
     @CPF(message = "CPF not valid")
     private String cpf;
 
