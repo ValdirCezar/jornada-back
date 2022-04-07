@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static com.valdir.jornadaback.utils.constants.Messages.OBJECT_NOT_FOUND_MESSAGE;
 import static java.lang.String.format;
 import static org.springframework.data.domain.Sort.Direction.valueOf;
 
@@ -30,7 +31,7 @@ public class CourseServiceImpl implements CourseService {
         Optional<Course> course = repository.findById(id);
         return course.orElseThrow(
                 () -> new ObjectNotFoundException(format(
-                        "Object not found exception! Id: %d, Tipe: %s", id, Course.class.getSimpleName()
+                        OBJECT_NOT_FOUND_MESSAGE, id, Course.class.getSimpleName()
                 ))
         );
     }
@@ -42,7 +43,6 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course create(CourseDTO dto) {
-        dto.setId(null);
         return repository.save(mapper.toEntity(dto));
     }
 

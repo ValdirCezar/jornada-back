@@ -1,5 +1,6 @@
 package com.valdir.jornadaback.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,9 +23,10 @@ public class Class {
     @Size(max = 125)
     private String name;
 
-    @Size(max = 10000)
+    @Size(max = 5000)
     private String description;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;

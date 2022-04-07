@@ -1,8 +1,10 @@
 package com.valdir.jornadaback.services.impl;
 
+import com.valdir.jornadaback.entities.Class;
 import com.valdir.jornadaback.entities.Course;
 import com.valdir.jornadaback.entities.User;
 import com.valdir.jornadaback.models.enumerations.ProfileEnum;
+import com.valdir.jornadaback.repositories.ClassRepository;
 import com.valdir.jornadaback.repositories.CourseRepository;
 import com.valdir.jornadaback.repositories.UserRepository;
 import com.valdir.jornadaback.services.StartDB;
@@ -19,6 +21,7 @@ public class StartDBImpl implements StartDB {
 
     private final UserRepository userRepository;
     private final CourseRepository courseRepository;
+    private final ClassRepository classRepository;
     private final BCryptPasswordEncoder encoder;
 
     @Override
@@ -50,6 +53,15 @@ public class StartDBImpl implements StartDB {
 
         courseRepository.saveAll(List.of(
                 course
+        ));
+
+        classRepository.saveAll(List.of(
+                Class.builder()
+                        .id(null)
+                        .name("Java OOP")
+                        .description("Test description")
+                        .course(course)
+                        .build()
         ));
     }
 }

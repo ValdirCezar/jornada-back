@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static com.valdir.jornadaback.utils.constants.Messages.OBJECT_NOT_FOUND_MESSAGE;
 import static java.lang.String.format;
 import static org.springframework.data.domain.Sort.Direction.valueOf;
 
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> user = repository.findById(id);
         return user.orElseThrow(
                 () -> new ObjectNotFoundException(format(
-                        "Object not found exception! Id: %d, Tipe: %s", id, User.class.getSimpleName()
+                        OBJECT_NOT_FOUND_MESSAGE, id, User.class.getSimpleName()
                 ))
         );
     }
