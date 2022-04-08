@@ -1,7 +1,6 @@
 package com.valdir.jornadaback.models.dtos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.valdir.jornadaback.entities.Class;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,6 +31,7 @@ public class CourseDTO implements Serializable {
     @Size(min = 5, max = 1024, message = "Field NAME must be 5 and 1024 characters")
     private String description;
 
-    private Set<Class> classes;
+    @JsonProperty(access = READ_ONLY)
+    private Set<ClassDTO> classes;
 
 }

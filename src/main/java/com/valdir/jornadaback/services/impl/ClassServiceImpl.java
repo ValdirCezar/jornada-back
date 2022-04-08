@@ -5,7 +5,7 @@ import com.valdir.jornadaback.mappers.ClassMapper;
 import com.valdir.jornadaback.models.dtos.ClassDTO;
 import com.valdir.jornadaback.repositories.ClassRepository;
 import com.valdir.jornadaback.services.ClassService;
-import com.valdir.jornadaback.services.UserService;
+import com.valdir.jornadaback.services.CourseService;
 import com.valdir.jornadaback.services.exceptions.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,7 +24,7 @@ public class ClassServiceImpl implements ClassService {
 
     private final ClassRepository repository;
     private final ClassMapper mapper;
-    private final UserService userService;
+    private final CourseService courseService;
 
     @Override
     public Class findById(Long id) {
@@ -44,13 +44,16 @@ public class ClassServiceImpl implements ClassService {
     @Override
     public Class create(ClassDTO dto) {
         Class obj = mapper.toEntity(dto);
+        obj.setCourse(courseService.findById(dto.getCourseId()));
         return repository.save(obj);
     }
 
     @Override
     public Class update(ClassDTO dto, Long id) {
         dto.setId(id);
-        Class obj = findById(id);
-        return repository.save(mapper.toEntity(dto));
+        findById(id);
+        Class obj = mapper.toEntity(dto);
+        obj.setCourse(courseService.findById(dto.getCourseId()));
+        return repository.save(obj);
     }
 }

@@ -29,4 +29,5 @@ public class ClassDTO {
     private String description;
 
     private Long courseId;
+
 }

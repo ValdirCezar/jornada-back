@@ -50,7 +50,7 @@ public class CourseServiceImpl implements CourseService {
     public Course update(CourseDTO dto, Long id) {
         dto.setId(id);
         Course course = findById(id);
-        course = mapper.updateFromDTO(dto, course.getUsers());
+        course = mapper.updateFromDTO(dto, course);
         return repository.save(course);
     }
 

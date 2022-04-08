@@ -1,20 +1,21 @@
 package com.valdir.jornadaback.mappers;
 
 import com.valdir.jornadaback.entities.Course;
-import com.valdir.jornadaback.entities.User;
 import com.valdir.jornadaback.models.dtos.CourseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.Set;
-
 @Mapper(componentModel = "spring")
 public interface CourseMapper {
 
-    CourseDTO toDTO(Course dto);
+    CourseDTO toDTO(Course entity);
 
     Course toEntity(CourseDTO dto);
 
-    @Mapping(source = "users", target = "users")
-    Course updateFromDTO(CourseDTO dto, Set<User> users);
+    @Mapping(target = "course.users", ignore = true)
+    @Mapping(target = "id", source = "dto.id")
+    @Mapping(target = "name", source = "dto.name")
+    @Mapping(target = "description", source = "dto.description")
+    @Mapping(target = "classes", source = "course.classes")
+    Course updateFromDTO(CourseDTO dto, Course course);
 }
