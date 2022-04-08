@@ -22,9 +22,8 @@ public class JWTUtil {
     public String generateToken(UserSS userSS) {
         log.info("JWTUtil - GERANDO TOKEN");
         return Jwts.builder()
-                .claim("email", userSS.getUsername())
                 .claim("name", userSS.getName())
-                .claim("authorities", userSS.getAuthorities())
+                .claim("roles", userSS.getAuthorities())
                 .setSubject(userSS.getUsername())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(SignatureAlgorithm.HS512, secret.getBytes()).compact();
