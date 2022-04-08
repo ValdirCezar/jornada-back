@@ -37,8 +37,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) {
 
-        String username = ((UserSS) authResult.getPrincipal()).getUsername();
-        String token = jwtUtil.generateToken(username);
+        var userSS = ((UserSS) authResult.getPrincipal());
+        String token = jwtUtil.generateToken(userSS);
         response.setHeader("access-control-expose-headers", "Authorization");
         response.setHeader("Authorization", "Bearer " + token);
     }

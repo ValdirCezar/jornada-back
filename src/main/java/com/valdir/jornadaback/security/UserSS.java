@@ -15,13 +15,16 @@ public class UserSS implements UserDetails {
 
     @Getter
     private final Long id;
+    @Getter
+    private final String name;
     private final String email;
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public UserSS(Long id, String email, String password, Set<ProfileEnum> profiles) {
+    public UserSS(Long id, String name, String email, String password, Set<ProfileEnum> profiles) {
         super();
         this.id = id;
+        this.name = name;
         this.email = email;
         this.password = password;
         this.authorities = profiles.stream().map(x -> new SimpleGrantedAuthority(x.getDescription()))

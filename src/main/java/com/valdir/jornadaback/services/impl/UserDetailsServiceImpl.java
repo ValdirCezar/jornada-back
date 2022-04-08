@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         logger.info("UserDetailsServiceImpl - PASSOU NO USER DETAILS SERVICE");
-        return new UserSS(obj.getId(), obj.getCpf(), obj.getPassword(), Collections.singleton(obj.getProfile()));
+        return new UserSS(obj.getId(), obj.getName(), obj.getCpf(), obj.getPassword(), Collections.singleton(obj.getProfile()));
     }
 
 }
