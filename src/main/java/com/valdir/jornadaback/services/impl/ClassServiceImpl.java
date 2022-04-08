@@ -52,8 +52,6 @@ public class ClassServiceImpl implements ClassService {
     public Class update(ClassDTO dto, Long id) {
         dto.setId(id);
         findById(id);
-        Class obj = mapper.toEntity(dto);
-        obj.setCourse(courseService.findById(dto.getCourseId()));
-        return repository.save(obj);
+        return repository.save(mapper.updateFromDTO(dto, courseService));
     }
 }
