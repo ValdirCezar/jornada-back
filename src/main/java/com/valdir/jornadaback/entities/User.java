@@ -27,7 +27,6 @@ public class User {
     @Size(max = 125)
     private String name;
 
-    @Column(unique = true)
     private String cpf;
 
     @Column(unique = true)
