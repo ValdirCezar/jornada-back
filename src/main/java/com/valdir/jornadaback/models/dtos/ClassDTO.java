@@ -9,6 +9,9 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 
 @Getter
@@ -29,5 +32,8 @@ public class ClassDTO {
     private String description;
 
     private Long courseId;
+
+    @JsonProperty(access = READ_ONLY)
+    private Set<QuizDTO> quizzes = new HashSet<>();
 
 }
