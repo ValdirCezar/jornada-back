@@ -1,10 +1,9 @@
 package com.valdir.jornadaback.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import java.time.LocalDateTime;
@@ -32,4 +31,9 @@ public class Quiz {
     private String theme;
     private LocalDateTime creationDate;
     private Double score;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "class_id")
+    private Class aClass;
 }

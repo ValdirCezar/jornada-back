@@ -6,6 +6,9 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Getter
@@ -30,5 +33,8 @@ public class Class {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
+
+    @OneToMany(mappedBy = "aClass")
+    private Set<Quiz> quizzes = new HashSet<>();
 
 }
