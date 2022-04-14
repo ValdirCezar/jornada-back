@@ -5,6 +5,7 @@ import com.valdir.jornadaback.mappers.UserMapper;
 import com.valdir.jornadaback.models.dtos.UserDTO;
 import com.valdir.jornadaback.repositories.UserRepository;
 import com.valdir.jornadaback.services.UserService;
+import com.valdir.jornadaback.services.exceptions.DataIntegrityViolationException;
 import com.valdir.jornadaback.services.exceptions.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 import static com.valdir.jornadaback.utils.constants.Messages.OBJECT_NOT_FOUND_MESSAGE;
 import static java.lang.String.format;
+import static java.util.Objects.nonNull;
 import static org.springframework.data.domain.Sort.Direction.valueOf;
 
 @Service
@@ -44,6 +46,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(UserDTO dto) {
         dto.setId(null);
+        IfEmailAlreadyExistsThrowException(dto);
         dto.setPassword(passwordEncoder.encode(dto.getPassword()));
         return repository.save(mapper.dtoToEntity(dto));
     }
@@ -51,9 +54,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(UserDTO dto, Long id) {
         dto.setId(id);
+        IfEmailAlreadyExistsThrowException(dto);
         User user = findById(id);
         user = mapper.updateFromDTO(dto, user.getCourses());
         return repository.save(user);
     }
 
+    private void IfEmailAlreadyExistsThrowException(UserDTO dto) {
+        User user = repository.findByEmail(dto.getEmail());
+        if(nonNull(user) || nonNull(dto.getId()) && !dto.getId().equals(user.getId())) {
+            throw new DataIntegrityViolationException("E-mail already registered");
+        }
+    }
 }
