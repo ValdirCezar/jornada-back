@@ -2,9 +2,7 @@ package com.valdir.jornadaback.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -25,4 +23,8 @@ public class Question {
     private String title;
 
     private Integer correctAlternative;
+
+    @ManyToOne
+    @JoinColumn(name = "quiz_id")
+    private Quiz quiz;
 }

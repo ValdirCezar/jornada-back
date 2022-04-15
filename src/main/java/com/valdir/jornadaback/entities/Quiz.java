@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -36,4 +38,7 @@ public class Quiz {
     @ManyToOne
     @JoinColumn(name = "class_id")
     private Class aClass;
+
+    @OneToMany(mappedBy = "quiz")
+    private Set<Question> question = new HashSet<>();
 }
