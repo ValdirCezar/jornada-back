@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final JWTUtil jwtUtil;
 
-    // TODO - Reconfigurar public matchers após implementações
+    // TODO - Reconfigurar public matchers após implementações 
     private static final String[] PUBLIC_MATCHERS = { "/**" };
 
     @Override
