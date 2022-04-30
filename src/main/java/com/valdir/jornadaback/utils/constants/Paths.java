@@ -7,6 +7,7 @@ public abstract class Paths {
     public static final String V1_REGISTERS = "/v1/registers";
     public static final String V1_CLASSES = "/v1/classes";
     public static final String V1_QUIZZES = "/v1/quizzes";
+    public static final String V1_QUESTIONS = "/v1/questions";
 
     public static final String ID = "/{id}";
 }

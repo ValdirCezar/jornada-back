@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -31,4 +33,6 @@ public class QuizDTO {
 
     @NotNull(message = "Field CLASS_ID must be not null")
     private Long classId;
+
+    private Set<QuestionDTO> questions = new HashSet<>();
 }
