@@ -22,6 +22,7 @@ public class JWTUtil {
     public String generateToken(UserSS userSS) {
         log.info("JWTUtil - GERANDO TOKEN");
         return Jwts.builder()
+                .claim("id", userSS.getId())
                 .claim("name", userSS.getName())
                 .claim("roles", userSS.getAuthorities())
                 .setSubject(userSS.getUsername())
