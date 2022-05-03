@@ -35,10 +35,10 @@ public class CourseResourceImpl implements CourseResource {
     }
 
     @Override
-    public ResponseEntity<Void> create(CourseDTO dto) {
+    public ResponseEntity<CourseDTO> create(CourseDTO dto) {
         Course course = service.create(dto);
         URI uri = fromCurrentRequest().path(ID).buildAndExpand(course.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(mapper.toDTO(course));
     }
 
     @Override
