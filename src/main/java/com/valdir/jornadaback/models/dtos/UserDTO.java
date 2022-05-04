@@ -5,12 +5,12 @@ import com.valdir.jornadaback.models.enumerations.ProfileEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -37,6 +37,7 @@ public class UserDTO implements Serializable {
     private String description;
     private Integer age;
     private Float score;
+    private Date birthDate;
     private ProfileEnum profile;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

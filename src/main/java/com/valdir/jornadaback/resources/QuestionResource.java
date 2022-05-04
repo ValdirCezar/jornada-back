@@ -24,7 +24,7 @@ public interface QuestionResource {
     );
 
     @PostMapping
-    ResponseEntity<Void> create(@Valid @RequestBody QuestionDTO dto);
+    ResponseEntity<QuestionDTO> create(@Valid @RequestBody QuestionDTO dto);
 
     @PutMapping(value = ID)
     ResponseEntity<QuestionDTO> update(@Valid @RequestBody QuestionDTO dto, @PathVariable Long id);

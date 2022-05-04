@@ -35,10 +35,10 @@ public class UserResourceImpl implements UserResource {
     }
 
     @Override
-    public ResponseEntity<Void> create(UserDTO dto) {
+    public ResponseEntity<UserDTO> create(UserDTO dto) {
         User user = service.create(dto);
         URI uri = fromCurrentRequest().path(ID).buildAndExpand(user.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(mapper.entityToDTO(user));
     }
 
     @Override

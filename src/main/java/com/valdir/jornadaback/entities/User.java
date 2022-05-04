@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -39,6 +40,7 @@ public class User {
     private String description;
     private Integer age;
     private Float score;
+    private Date birthDate;
 
     @Enumerated(EnumType.STRING)
     private ProfileEnum profile;

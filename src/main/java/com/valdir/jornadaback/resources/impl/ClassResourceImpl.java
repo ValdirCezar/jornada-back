@@ -35,10 +35,10 @@ public class ClassResourceImpl  implements ClassResource {
     }
 
     @Override
-    public ResponseEntity<Void> create(ClassDTO dto) {
+    public ResponseEntity<ClassDTO> create(ClassDTO dto) {
         Class obj = service.create(dto);
         URI uri = fromCurrentRequest().path(ID).buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(mapper.toDTO(obj));
     }
 
     @Override

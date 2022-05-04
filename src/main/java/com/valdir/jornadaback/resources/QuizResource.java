@@ -24,7 +24,7 @@ public interface QuizResource {
     );
 
     @PostMapping
-    ResponseEntity<Void> create(@Valid @RequestBody QuizDTO dto);
+    ResponseEntity<QuizDTO> create(@Valid @RequestBody QuizDTO dto);
 
     @PutMapping(value = ID)
     ResponseEntity<QuizDTO> update(@Valid @RequestBody QuizDTO dto, @PathVariable Long id);

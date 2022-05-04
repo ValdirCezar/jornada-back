@@ -25,7 +25,7 @@ public interface ClassResource {
     );
 
     @PostMapping
-    ResponseEntity<Void> create(@Valid @RequestBody ClassDTO dto);
+    ResponseEntity<ClassDTO> create(@Valid @RequestBody ClassDTO dto);
 
     @PutMapping(value = ID)
     ResponseEntity<ClassDTO> update(@Valid @RequestBody ClassDTO dto, @PathVariable Long id);

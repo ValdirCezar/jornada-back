@@ -35,10 +35,10 @@ public class QuizResourceImpl implements QuizResource {
     }
 
     @Override
-    public ResponseEntity<Void> create(QuizDTO dto) {
+    public ResponseEntity<QuizDTO> create(QuizDTO dto) {
         Quiz obj = service.create(dto);
         URI uri = fromCurrentRequest().path(ID).buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(mapper.toDTO(obj));
     }
 
     @Override

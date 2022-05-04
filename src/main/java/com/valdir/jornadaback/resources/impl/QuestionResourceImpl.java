@@ -35,10 +35,10 @@ public class QuestionResourceImpl implements QuestionResource {
     }
 
     @Override
-    public ResponseEntity<Void> create(QuestionDTO dto) {
+    public ResponseEntity<QuestionDTO> create(QuestionDTO dto) {
         Question obj = service.create(dto);
         URI uri = fromCurrentRequest().path(ID).buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(mapper.toDTO(obj));
     }
 
     @Override
