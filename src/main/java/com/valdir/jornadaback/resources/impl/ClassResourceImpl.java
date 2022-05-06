@@ -5,10 +5,12 @@ import com.valdir.jornadaback.mappers.ClassMapper;
 import com.valdir.jornadaback.models.dtos.ClassDTO;
 import com.valdir.jornadaback.resources.ClassResource;
 import com.valdir.jornadaback.services.ClassService;
+import com.valdir.jornadaback.services.FIleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
 
@@ -21,6 +23,7 @@ public class ClassResourceImpl  implements ClassResource {
 
     private final ClassService service;
     private final ClassMapper mapper;
+    private final FIleService fileService;
 
     @Override
     public ResponseEntity<ClassDTO> findById(Long id) {
@@ -45,6 +48,12 @@ public class ClassResourceImpl  implements ClassResource {
     public ResponseEntity<ClassDTO> update(ClassDTO dto, Long id) {
         Class obj = service.update(dto, id);
         return ResponseEntity.ok().body(mapper.toDTO(obj));
+    }
+
+    @Override
+    public ResponseEntity<URI> uploadFile(MultipartFile multipartFile, Long classId) {
+        URI uri = fileService.uploadFile(multipartFile, classId);
+        return ResponseEntity.created(uri).build();
     }
 
 }

@@ -4,8 +4,11 @@ import com.valdir.jornadaback.models.dtos.ClassDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+
+import java.net.URI;
 
 import static com.valdir.jornadaback.utils.constants.Paths.ID;
 import static com.valdir.jornadaback.utils.constants.Paths.V1_CLASSES;
@@ -29,4 +32,8 @@ public interface ClassResource {
 
     @PutMapping(value = ID)
     ResponseEntity<ClassDTO> update(@Valid @RequestBody ClassDTO dto, @PathVariable Long id);
+
+    @PostMapping("/uploadFile")
+    ResponseEntity<URI> uploadFile(@RequestParam("file") MultipartFile multipartFile,
+                                   @RequestParam("classId") Long classId);
 }

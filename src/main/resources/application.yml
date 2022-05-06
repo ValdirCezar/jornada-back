@@ -7,11 +7,10 @@ spring:
     username: sa
     password: ''
     url: jdbc:h2:mem:testdb
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    username: ${DB_USERNAME:root}
-#    password: ${DB_PASSWORD:root}
-#    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:jornada-db}
-
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 10MB
   jpa:
     properties:
       hibernate:
@@ -27,3 +26,8 @@ jwt:
   secret: WordToAddInTokenAccess
 server:
   port: ${SERVER_PORT:8000}
+aws:
+  access_key_id: ${S3_ACCESS_KEY:}
+  secret_access_key: ${S3_SECRET_ACCESS_KEY:}
+  s3_bucket: jornada-back
+  region: us-east-1
