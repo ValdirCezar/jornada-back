@@ -20,7 +20,6 @@ public class JWTUtil {
     private Long expiration;
 
     public String generateToken(UserSS userSS) {
-        log.info("JWTUtil - GERANDO TOKEN");
         return Jwts.builder()
                 .claim("id", userSS.getId())
                 .claim("name", userSS.getName())
@@ -31,7 +30,6 @@ public class JWTUtil {
     }
 
     public boolean tokenValido(String token) {
-        log.info("JWTUtil - VERIFICANDO SE TOKEN É VÁLIDO");
         Claims claims = getClaimsToken(token);
 
         if (claims != null) {
@@ -45,7 +43,6 @@ public class JWTUtil {
     }
 
     private Claims getClaimsToken(String token) {
-        log.info("JWTUtil - OBTENDO CLAIMS DO TOKEN");
         try {
             return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody();
         } catch (Exception e) {
@@ -54,7 +51,6 @@ public class JWTUtil {
     }
 
     public String getUsername(String token) {
-        log.info("JWTUtil - OBTENDO USERNAME DO TOKEN");
         Claims claims = getClaimsToken(token);
         if (claims != null) {
             return claims.getSubject();

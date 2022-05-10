@@ -18,7 +18,6 @@ public class StartDBConfig {
     @Bean
     public boolean startDB() {
         if(properties.getDdl().equals("create")) {
-            log.info("START_DB_CONFIG ::: Criando tabelas no banco");
             startDB.startDB();
             return true;
         }
