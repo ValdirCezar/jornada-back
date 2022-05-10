@@ -7,23 +7,29 @@ import com.valdir.jornadaback.resources.ClassResource;
 import com.valdir.jornadaback.services.ClassService;
 import com.valdir.jornadaback.services.FIleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
 
 import static com.valdir.jornadaback.utils.constants.Paths.ID;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
 @RestController
 @RequiredArgsConstructor
-public class ClassResourceImpl  implements ClassResource {
+public class ClassResourceImpl implements ClassResource {
 
     private final ClassService service;
     private final ClassMapper mapper;
     private final FIleService fileService;
+
+    @Value("${aws.s3_bucket}")
+    private String bucketName;
 
     @Override
     public ResponseEntity<ClassDTO> findById(Long id) {
@@ -54,6 +60,12 @@ public class ClassResourceImpl  implements ClassResource {
     public ResponseEntity<URI> uploadFile(MultipartFile multipartFile, Long classId) {
         URI uri = fileService.uploadFile(multipartFile, classId);
         return ResponseEntity.created(uri).build();
+    }
+
+    @Override
+    public ResponseEntity<List<String>> getFilesURI(Long classId) throws URISyntaxException {
+        List<String> pathList = fileService.listFilesOnPathS3(bucketName, "classes/classId-" + classId.toString());
+        return ResponseEntity.ok().body(pathList);
     }
 
 }

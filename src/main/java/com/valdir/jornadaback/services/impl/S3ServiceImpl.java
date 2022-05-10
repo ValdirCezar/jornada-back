@@ -53,10 +53,10 @@ public class S3ServiceImpl implements S3Service {
     }
 
     private void verifyExtension(String fileName) {
-        var permittedExt = List.of("jpg", "jpeg", "jpg", "docx");
+        var permittedExt = List.of("pdf", "jpeg", "jpg", "docx");
         var ext = fileName.substring(fileName.lastIndexOf(".") + 1);
         if(!permittedExt.contains(ext)) {
-            throw new FileNotSupportedException("Only pdf, jpeg and jpg files are allowed");
+            throw new FileNotSupportedException("Only pdf, docx, jpeg and jpg files are allowed");
         }
     }
 
