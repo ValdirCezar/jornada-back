@@ -19,7 +19,8 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
-public class StartDBImpl implements StartDB {
+public class
+StartDBImpl implements StartDB {
 
     private final UserRepository userRepository;
     private final CourseRepository courseRepository;

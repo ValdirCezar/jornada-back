@@ -3,10 +3,10 @@ spring:
     name: user-service
   datasource:
 # ---- H2 Database ----
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: ''
-    url: jdbc:h2:mem:testdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}
+    username: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
   servlet:
     multipart:
       max-file-size: 1MB
