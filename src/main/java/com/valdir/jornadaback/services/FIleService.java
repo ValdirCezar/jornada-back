@@ -10,4 +10,5 @@ import java.util.ArrayList;
 public interface FIleService {
     URI uploadFile(MultipartFile multipartFile, Long classId);
     ArrayList<String> listFilesOnPathS3(String bucketName, String pathName);
+    void deleteFile(String bucketName, String pathName, String fileName);
 }

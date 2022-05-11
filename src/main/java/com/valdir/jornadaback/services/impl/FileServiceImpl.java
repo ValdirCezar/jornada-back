@@ -1,6 +1,7 @@
 package com.valdir.jornadaback.services.impl;
 
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.DeleteObjectsRequest;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.valdir.jornadaback.services.FIleService;
 import com.valdir.jornadaback.services.S3Service;
@@ -38,6 +39,13 @@ public class FileServiceImpl implements FIleService {
             }
         }
         return listOfElements;
+    }
+
+    @Override
+    public void deleteFile(String bucketName, String pathName, String fileName) {
+        s3Client.deleteObjects(
+                new DeleteObjectsRequest(bucketName + pathName + fileName)
+        );
     }
 
 }
