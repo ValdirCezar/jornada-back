@@ -54,7 +54,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User update(UserDTO dto, Long id) {
         dto.setId(id);
-        IfEmailAlreadyExistsThrowException(dto);
         User user = findById(id);
         user = mapper.updateFromDTO(dto, user.getCourses());
         return repository.save(user);

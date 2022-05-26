@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-import static com.valdir.jornadaback.utils.constants.Paths.*;
+import static com.valdir.jornadaback.utils.constants.Paths.ID;
+import static com.valdir.jornadaback.utils.constants.Paths.V1_COURSES;
 
 @RequestMapping(value = V1_COURSES)
 public interface CourseResource {

@@ -78,10 +78,6 @@
             <artifactId>aws-java-sdk</artifactId>
             <version>1.12.213</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
