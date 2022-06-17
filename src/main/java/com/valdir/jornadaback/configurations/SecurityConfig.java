@@ -19,7 +19,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,7 +28,6 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final Environment environment;
     private final UserDetailsService userDetailsService;
     private final JWTUtil jwtUtil;
 
@@ -38,11 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        if (Arrays.asList(this.environment.getActiveProfiles()).contains("test")) {
-            http.headers().frameOptions().disable();
-        }
-
-        http.cors().and().csrf().disable();
+        http.cors().configurationSource(corsConfigurationSource()).and().csrf().disable();
         http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated();
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));
         http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService));
@@ -60,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         configuration.applyPermitDefaultValues();
         configuration.setAllowedOrigins(Collections.singletonList("*"));
         configuration.setExposedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-        configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("POST", "GET", "PUT", "DELETE", "OPTIONS"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

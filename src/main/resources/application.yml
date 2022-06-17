@@ -3,10 +3,10 @@ spring:
     name: user-service
   datasource:
 # ---- H2 Database ----
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}
-    username: ${MYSQLUSER}
-    password: ${MYSQLPASSWORD}
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ''
+    url: jdbc:h2:mem:testdb
   servlet:
     multipart:
       max-file-size: 1MB
@@ -25,7 +25,7 @@ jwt:
   expiration: 640000000
   secret: WordToAddInTokenAccess
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT:8081}
 aws:
   access_key_id: ${S3_ACCESS_KEY:}
   secret_access_key: ${S3_SECRET_ACCESS_KEY:}

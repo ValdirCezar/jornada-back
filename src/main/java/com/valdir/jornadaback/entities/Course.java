@@ -22,6 +22,8 @@ public class Course {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    private Long creatorId;
+
     @Size(max = 125)
     private String name;
 

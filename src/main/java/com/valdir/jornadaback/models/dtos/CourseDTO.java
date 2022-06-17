@@ -23,6 +23,9 @@ public class CourseDTO implements Serializable {
     @JsonProperty(access = READ_ONLY)
     private Long id;
 
+    @NotNull(message = "Field creatorId must be not null")
+    private Long creatorId;
+
     @NotNull(message = "Field NAME must be not null")
     @Size(min = 3, max = 125, message = "Field NAME must be 3 and 125 characters")
     private String name;

@@ -14,6 +14,7 @@ public interface CourseMapper {
 
     @Mapping(target = "course.users", ignore = true)
     @Mapping(target = "id", source = "dto.id")
+    @Mapping(target = "creatorId", source = "dto.creatorId")
     @Mapping(target = "name", source = "dto.name")
     @Mapping(target = "description", source = "dto.description")
     @Mapping(target = "classes", source = "course.classes")
