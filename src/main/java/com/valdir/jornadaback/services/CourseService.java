@@ -4,6 +4,8 @@ import com.valdir.jornadaback.entities.Course;
 import com.valdir.jornadaback.models.dtos.CourseDTO;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface CourseService {
 
     Course findById(Long id);
@@ -13,4 +15,6 @@ public interface CourseService {
     Course create(CourseDTO dto);
 
     Course update(CourseDTO dto, Long id);
+
+    List<Course> findAllByUser(Long userId);
 }

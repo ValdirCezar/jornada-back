@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.valdir.jornadaback.utils.constants.Messages.OBJECT_NOT_FOUND_MESSAGE;
@@ -52,6 +53,11 @@ public class CourseServiceImpl implements CourseService {
         Course course = findById(id);
         course = mapper.updateFromDTO(dto, course);
         return repository.save(course);
+    }
+
+    @Override
+    public List<Course> findAllByUser(Long userId) {
+        return repository.findAllByCreatorId(userId);
     }
 
 }

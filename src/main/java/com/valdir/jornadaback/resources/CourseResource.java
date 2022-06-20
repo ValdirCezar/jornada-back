@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.util.List;
+
 import static com.valdir.jornadaback.utils.constants.Paths.ID;
 import static com.valdir.jornadaback.utils.constants.Paths.V1_COURSES;
 
@@ -23,6 +25,9 @@ public interface CourseResource {
             @RequestParam(value = "direction", defaultValue = "ASC") String direction,
             @RequestParam(value = "orderBy", defaultValue = "name") String orderBy
     );
+
+    @GetMapping("/user/{userId}")
+    ResponseEntity<List<CourseDTO>> findAllByUser(@PathVariable Long userId);
 
     @PostMapping
     ResponseEntity<CourseDTO> create(@Valid @RequestBody CourseDTO dto);

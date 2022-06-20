@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -41,5 +41,5 @@ public class UserDTO implements Serializable {
     private ProfileEnum profile;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private List<CourseDTO> courses;
+    private Set<CourseDTO> courses;
 }

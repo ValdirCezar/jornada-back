@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.valdir.jornadaback.utils.constants.Paths.ID;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -32,6 +34,13 @@ public class CourseResourceImpl implements CourseResource {
     public ResponseEntity<Page<CourseDTO>> findAll(Integer page, Integer size, String direction, String orderBy) {
         Page<Course> list = service.findPage(page, size, direction, orderBy);
         return ResponseEntity.ok().body(list.map(mapper::toDTO));
+    }
+
+    @Override
+    public ResponseEntity<List<CourseDTO>> findAllByUser(Long userId) {
+        List<Course> courses = service.findAllByUser(userId);
+        List<CourseDTO> dtoList = courses.stream().map(mapper::toDTO).collect(Collectors.toList());
+        return ResponseEntity.ok().body(dtoList);
     }
 
     @Override
