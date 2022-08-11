@@ -37,8 +37,6 @@ StartDBImpl implements StartDB {
                 .description("Test course")
                 .build();
 
-        courseRepository.save(course);
-
         User user = User.builder()
                 .name("Valdir Cezar")
                 .cpf("09129161924")
@@ -51,7 +49,10 @@ StartDBImpl implements StartDB {
                 .courses(Collections.singleton(course))
                 .build();
 
-        userRepository.save(user);
+        var userSaved = userRepository.save(user);
+
+        course.setCreatorId(userSaved.getId());
+        courseRepository.save(course);
 
         Class aClass = Class.builder()
                 .name("Class")
