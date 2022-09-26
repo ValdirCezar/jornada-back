@@ -17,6 +17,7 @@ public class Alternative {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+
     private String description;
 
     @ManyToOne

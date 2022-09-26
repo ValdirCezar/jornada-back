@@ -1,14 +1,9 @@
 package com.valdir.jornadaback.services.impl;
 
+import com.valdir.jornadaback.entities.*;
 import com.valdir.jornadaback.entities.Class;
-import com.valdir.jornadaback.entities.Course;
-import com.valdir.jornadaback.entities.Quiz;
-import com.valdir.jornadaback.entities.User;
 import com.valdir.jornadaback.models.enumerations.ProfileEnum;
-import com.valdir.jornadaback.repositories.ClassRepository;
-import com.valdir.jornadaback.repositories.CourseRepository;
-import com.valdir.jornadaback.repositories.QuizRepository;
-import com.valdir.jornadaback.repositories.UserRepository;
+import com.valdir.jornadaback.repositories.*;
 import com.valdir.jornadaback.services.StartDB;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @Service
@@ -27,6 +24,8 @@ StartDBImpl implements StartDB {
     private final ClassRepository classRepository;
     private final QuizRepository quizRepository;
     private final BCryptPasswordEncoder encoder;
+    private final AlternativeRepository alternativeRepository;
+    private final QuestionRepository questionRepository;
 
     @Override
     public void startDB() {
@@ -73,6 +72,32 @@ StartDBImpl implements StartDB {
                 .build();
 
         quizRepository.save(quiz);
+
+
+        Alternative alternative1 = Alternative.builder().id(1L).description("Alternativa 1").build();
+        Alternative alternative2 = Alternative.builder().id(2L).description("Alternativa 2").build();
+        Alternative alternative3 = Alternative.builder().id(3L).description("Alternativa 3").build();
+        Alternative alternative4 = Alternative.builder().id(4L).description("Alternativa 4").build();
+        Alternative alternative5 = Alternative.builder().id(5L).description("Alternativa 5").build();
+        Alternative alternative6 = Alternative.builder().id(6L).description("Alternativa 6").build();
+
+        Question question = Question.builder()
+                .id(null)
+                .title("Questão 1")
+                .alternative(Set.of(alternative1, alternative2, alternative3, alternative4, alternative5, alternative6))
+                .correctAlternative(Integer.parseInt(alternative1.getId().toString()))
+                .quiz(quiz)
+                .build();
+
+        alternative1.setQuestion(question);
+        alternative2.setQuestion(question);
+        alternative3.setQuestion(question);
+        alternative4.setQuestion(question);
+        alternative5.setQuestion(question);
+        alternative6.setQuestion(question);
+
+        questionRepository.saveAll(List.of(question));
+        alternativeRepository.saveAll(List.of(alternative1, alternative2, alternative3, alternative4, alternative5, alternative6));
 
     }
 }
