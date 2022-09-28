@@ -6,16 +6,15 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Log4j2
 @RequiredArgsConstructor
 @Configuration
 public class StartDBConfig {
 
     private final StartDB startDB;
 
-    @Bean
-    public void startDB() {
-        startDB.startDB();
-    }
+//    @Bean
+//    public void startDB() {
+//        startDB.startDB();
+//    }
 
 }
