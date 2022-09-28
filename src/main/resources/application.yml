@@ -2,22 +2,18 @@ spring:
   application:
     name: user-service
   datasource:
-# ---- H2 Database ----
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: ''
-    url: jdbc:h2:mem:testdb
-  servlet:
-    multipart:
-      max-file-size: 1MB
-      max-request-size: 10MB
+    url: jdbc:${CLEARDB_DATABASE_URL}
   jpa:
     properties:
       hibernate:
         format_sql: 'true'
     hibernate:
-      ddl-auto: ${DDL_AUTO:update}
+      ddl-auto: update
     show-sql: 'true'
+  servlet:
+    multipart:
+      max-file-size: 1MB
+      max-request-size: 10MB
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
