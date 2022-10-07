@@ -19,6 +19,7 @@ import java.util.Set;
 public class UserDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     @NotNull(message = "Field NAME must be not null")

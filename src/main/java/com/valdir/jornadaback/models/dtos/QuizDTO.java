@@ -1,5 +1,6 @@
 package com.valdir.jornadaback.models.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class QuizDTO {
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     @NotNull(message = "Field NAME must be not null")
@@ -27,6 +29,7 @@ public class QuizDTO {
 
     private String theme;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private final LocalDateTime creationDate = LocalDateTime.now();
 
     private Double score;
@@ -34,5 +37,6 @@ public class QuizDTO {
     @NotNull(message = "Field CLASS_ID must be not null")
     private Long classId;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Set<QuestionDTO> questions = new HashSet<>();
 }

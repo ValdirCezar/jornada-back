@@ -1,8 +1,11 @@
 package com.valdir.jornadaback.services;
 
+import com.valdir.jornadaback.entities.Alternative;
 import com.valdir.jornadaback.entities.Question;
 import com.valdir.jornadaback.models.dtos.QuestionDTO;
 import org.springframework.data.domain.Page;
+
+import java.util.Set;
 
 public interface QuestionService {
     
@@ -13,4 +16,5 @@ public interface QuestionService {
     Question create(QuestionDTO dto);
 
     Question update(QuestionDTO dto, Long id);
+
 }

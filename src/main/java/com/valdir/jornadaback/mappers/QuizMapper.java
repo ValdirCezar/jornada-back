@@ -13,10 +13,12 @@ import org.mapstruct.Named;
 public interface QuizMapper {
 
     @Mapping(target = "id", ignore = true)
-    Quiz toEntity(QuizDTO dto);
+    @Mapping(target = "aClass", source = "dto", qualifiedByName = "getClass")
+    Quiz toEntity(QuizDTO dto, @Context ClassService courseService);
 
-    @Mapping(target = "classId", source = "obj.id")
-    QuizDTO toDTO(Quiz obj);
+    @Mapping(target = "id", source = "quiz.id")
+    @Mapping(target = "classId", source = "quiz", qualifiedByName = "getClassId")
+    QuizDTO toDTO(Quiz quiz, @Context ClassService classService);
 
     @Mapping(target = "id", source = "dto.id")
     @Mapping(target = "aClass", source = "dto", qualifiedByName = "getClass")
@@ -27,4 +29,8 @@ public interface QuizMapper {
         return classService.findById(dto.getClassId());
     }
 
+    @Named("getClassId")
+    default Long getClassId(Quiz quiz, @Context ClassService classService) {
+        return classService.findById(quiz.getId()).getId();
+    }
 }

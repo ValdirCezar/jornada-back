@@ -27,7 +27,8 @@ public class CourseResourceImpl implements CourseResource {
     @Override
     public ResponseEntity<CourseDTO> findById(Long id) {
         Course course = service.findById(id);
-        return ResponseEntity.ok().body(mapper.toDTO(course));
+        CourseDTO dto = mapper.toDTO(course);
+        return ResponseEntity.ok().body(dto);
     }
 
     @Override

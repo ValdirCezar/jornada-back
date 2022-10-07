@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.valdir.jornadaback.utils.constants.Messages.OBJECT_NOT_FOUND_MESSAGE;
@@ -43,7 +44,8 @@ public class AlternativeServiceImpl implements AlternativeService {
 
     @Override
     public Alternative create(AlternativeDTO dto) {
-        return repository.save(mapper.toEntity(dto, questionService));
+        Alternative newObj = mapper.toEntity(dto, questionService);
+        return repository.save(newObj);
     }
 
     @Override
@@ -51,5 +53,10 @@ public class AlternativeServiceImpl implements AlternativeService {
         dto.setId(id);
         findById(id);
         return repository.save(mapper.updateFromDTO(dto, questionService));
+    }
+
+    @Override
+    public List<Alternative> findByQuestionId(Long questionId) {
+        return repository.findAllByQuestionId(questionId);
     }
 }

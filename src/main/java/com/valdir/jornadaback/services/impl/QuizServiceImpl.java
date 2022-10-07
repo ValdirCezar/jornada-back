@@ -45,7 +45,7 @@ public class QuizServiceImpl implements QuizService {
 
     @Override
     public Quiz create(QuizDTO dto) {
-        return repository.save(mapper.toEntity(dto));
+        return repository.save(mapper.toEntity(dto, classService));
     }
 
     @Override
