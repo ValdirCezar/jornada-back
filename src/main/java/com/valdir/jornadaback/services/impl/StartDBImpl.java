@@ -84,7 +84,7 @@ StartDBImpl implements StartDB {
         Question question = Question.builder()
                 .id(null)
                 .title("Questão 1")
-                .alternative(Set.of(alternative1, alternative2, alternative3, alternative4, alternative5, alternative6))
+                .alternatives(Set.of(alternative1, alternative2, alternative3, alternative4, alternative5, alternative6))
                 .correctAlternative(Integer.parseInt(alternative1.getId().toString()))
                 .quiz(quiz)
                 .build();
