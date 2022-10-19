@@ -31,6 +31,6 @@ public interface QuizMapper {
 
     @Named("getClassId")
     default Long getClassId(Quiz quiz, @Context ClassService classService) {
-        return classService.findById(quiz.getId()).getId();
+        return classService.findById(quiz.getAClass().getId()).getId();
     }
 }
