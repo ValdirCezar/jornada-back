@@ -17,4 +17,6 @@ public interface AlternativeService {
     Alternative update(AlternativeDTO dto, Long id);
 
     List<Alternative> findByQuestionId(Long questionId);
+
+    void delete(Long id);
 }

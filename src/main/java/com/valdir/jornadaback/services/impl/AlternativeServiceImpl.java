@@ -59,4 +59,10 @@ public class AlternativeServiceImpl implements AlternativeService {
     public List<Alternative> findByQuestionId(Long questionId) {
         return repository.findAllByQuestionId(questionId);
     }
+
+    @Override
+    public void delete(Long id) {
+        findById(id);
+        repository.deleteById(id);
+    }
 }

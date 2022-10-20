@@ -43,4 +43,10 @@ public class AlternativeResourceImpl implements AlternativeResource {
         return ResponseEntity.ok().body(mapper.toDTO(service.update(dto, id)));
     }
 
+    @Override
+    public ResponseEntity<Void> delete(Long id) {
+        service.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
 }

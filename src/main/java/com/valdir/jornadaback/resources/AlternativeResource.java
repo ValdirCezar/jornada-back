@@ -28,4 +28,7 @@ public interface AlternativeResource {
 
     @PutMapping(value = ID)
     ResponseEntity<AlternativeDTO> update(@Valid @RequestBody AlternativeDTO dto, @PathVariable Long id);
+
+    @DeleteMapping(value = ID)
+    ResponseEntity<Void> delete(@PathVariable Long id);
 }
