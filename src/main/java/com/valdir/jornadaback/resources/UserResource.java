@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import java.util.List;
+
 import static com.valdir.jornadaback.utils.constants.Paths.ID;
 import static com.valdir.jornadaback.utils.constants.Paths.V1_USERS;
 
@@ -29,4 +31,7 @@ public interface UserResource {
 
     @PutMapping(value = ID)
     ResponseEntity<UserDTO> update(@Valid @RequestBody UserDTO dto, @PathVariable Long id);
+
+    @GetMapping(value = "/course/{creatorId}")
+    ResponseEntity<List<UserDTO>> findAllUsersRegisteredOnCourse(@PathVariable Long creatorId);
 }

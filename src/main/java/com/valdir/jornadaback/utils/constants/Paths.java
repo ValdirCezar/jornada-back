@@ -12,5 +12,6 @@ public abstract class Paths {
     public static final String V1_QUESTIONS = "/v1/questions";
 
     public static final String ID = "/{id}";
-    public static final String USER_ID = "/{userId}";
+
+    private Paths() { }
 }

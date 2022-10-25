@@ -1,8 +1,10 @@
 package com.valdir.jornadaback.services.impl;
 
+import com.valdir.jornadaback.entities.Course;
 import com.valdir.jornadaback.entities.User;
 import com.valdir.jornadaback.mappers.UserMapper;
 import com.valdir.jornadaback.models.dtos.UserDTO;
+import com.valdir.jornadaback.repositories.CourseRepository;
 import com.valdir.jornadaback.repositories.UserRepository;
 import com.valdir.jornadaback.services.UserService;
 import com.valdir.jornadaback.services.exceptions.DataIntegrityViolationException;
@@ -13,6 +15,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static com.valdir.jornadaback.utils.constants.Messages.OBJECT_NOT_FOUND_MESSAGE;
@@ -27,6 +31,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final CourseRepository courseRepository;
 
     @Override
     public User findById(Long id) {
@@ -57,6 +62,19 @@ public class UserServiceImpl implements UserService {
         User user = findById(id);
         user = mapper.updateFromDTO(dto, user.getCourses());
         return repository.save(user);
+    }
+
+    @Override
+    public List<User> findAllUsersRegisteredOnCourse(Long creatorId) {
+        List<Course> courses = courseRepository.findAllByCreatorId(creatorId);
+
+        List<User> list = new ArrayList<>();
+        for(Course x : courses) {
+            final var users = repository.findByCourses_Id(x.getId());
+            list.addAll(users);
+        }
+
+        return list;
     }
 
     private void IfEmailAlreadyExistsThrowException(UserDTO dto) {

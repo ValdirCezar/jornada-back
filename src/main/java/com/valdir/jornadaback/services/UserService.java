@@ -5,6 +5,8 @@ import com.valdir.jornadaback.models.dtos.UserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface UserService {
 
@@ -15,4 +17,6 @@ public interface UserService {
     User create(UserDTO dto);
 
     User update(UserDTO dto, Long id);
+
+    List<User> findAllUsersRegisteredOnCourse(Long creatorId);
 }

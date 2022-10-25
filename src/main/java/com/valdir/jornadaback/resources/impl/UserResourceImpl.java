@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.valdir.jornadaback.utils.constants.Paths.ID;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -46,5 +48,12 @@ public class UserResourceImpl implements UserResource {
         User user = service.update(dto, id);
         return ResponseEntity.ok().body(mapper.entityToDTO(user));
     }
+
+    @Override
+    public ResponseEntity<List<UserDTO>> findAllUsersRegisteredOnCourse(Long creatorId) {
+        final var list = service.findAllUsersRegisteredOnCourse(creatorId);
+        return ResponseEntity.ok().body(list.stream().map(mapper::entityToDTO).collect(Collectors.toList()));
+    }
+
 
 }
