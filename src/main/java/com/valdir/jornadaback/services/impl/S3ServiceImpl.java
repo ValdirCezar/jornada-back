@@ -45,7 +45,7 @@ public class S3ServiceImpl implements S3Service {
         try {
             var metadata = new ObjectMetadata();
             metadata.setContentType(contentType);
-            s3Client.putObject(bucketName + "/classes/classId-" + classId, fileName, inputStream, metadata);
+            s3Client.putObject(bucketName + "/classId-" + classId, fileName, inputStream, metadata);
             return s3Client.getUrl(bucketName, fileName).toURI();
         } catch (URISyntaxException e) {
             throw new FileException("Erro ao converter URL para URI");
@@ -53,7 +53,7 @@ public class S3ServiceImpl implements S3Service {
     }
 
     private void verifyExtension(String fileName) {
-        var permittedExt = List.of("pdf", "jpeg", "jpg", "docx");
+        var permittedExt = List.of("pdf", "jpeg", "jpg", "docx", "csv");
         var ext = fileName.substring(fileName.lastIndexOf(".") + 1);
         if(!permittedExt.contains(ext)) {
             throw new FileNotSupportedException("Only pdf, docx, jpeg and jpg files are allowed");
